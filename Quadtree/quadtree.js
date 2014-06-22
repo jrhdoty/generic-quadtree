@@ -15,8 +15,9 @@ Quadtree.prototype.insert = function(point, object){
 
   //if is a leaf node and not full, then insert
   //need to check if it already exists though
+  var i;
   if (this.children === null && this.value.length < this.max){
-    for(var i = 0; i < this.value.length; i++){
+    for( i = 0; i < this.value.length; i++ ){
       if(this.value[i].point.equals(point)){
         this.value[i].value = object;
         return;
@@ -32,7 +33,7 @@ Quadtree.prototype.insert = function(point, object){
   }
 
   // if is not a leaf node, call insert on child nodes
-  for(var i = 0; i < this.children.length; i++){
+  for( i = 0; i < this.children.length; i++ ){
     this.children[i].insert(point, object);
   }
   this.value = [];
