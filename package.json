@@ -1,6 +1,14 @@
 {
-  "name": "quadtree",
-  "private": true,
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "generic-quadtree",
+  "description": "a generic quadtree for quick range lookup",
+  "author": "John Doty <jrhdoty@gmail.com>",
+  "version": "0.1.0",
+  "main": "./Quadtree/quadtree.js",
+  "dependencies": {}, 
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jrhdoty/generic-quadtree.git"
+  },
+  "bugs": "https://github.com/jrhdoty/generic-quadtree/issues"
 }
