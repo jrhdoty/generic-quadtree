@@ -1,51 +1,30 @@
 'use strict';
 
-var Point = function(x, y){
-  this.x = x;
-  this.y = y;
-};
-
-//strict less than
-Point.prototype.lt = function(point){
-  if(this.x <= point.x && this.y <= point.y){
-    return true;
-  }
-  return false;
-};
-
-//strict greater than
-Point.prototype.gt = function(point){
-  if (this.x >= point.x && this.y >= point.y){
-    return true;
-  }
-  return false;
-};
-
-//generalized box class, defined by two points with lessThan (lt) and greaterThan (gt) functions
-//these functions are strict across two dimensions
+//generalized box class, defined by two points with lessThan (lte) and greaterThan (gte) functions
 var Box = function(least, greatest){
   this.low = least;
   this.high = greatest;
 };
 
-Box.prototype.containsPoint = function(point){
-  //if point is not strictly less than or equal to least and not strictly greater than or equal to greatest, it is contained
-  if(this.low.lt(point) && this.high.gt(point)){
+//return true if box contains point
+Box.prototype.contains = function(point){
+  if(this.low.lte(point) && this.high.gte(point)){
     return true;
   }
   return false;
 };
 
+//return true if overlap of boxes
 Box.prototype.overlaps = function(box){
   //if this contains either point of box, then there is an overlap
-  if(this.containsPoint(box.low) || this.containsPoint(box.high) || 
-     box.containsPoint(this.low) || box.containsPoint(this.high)){
+  if(this.contains(box.low) || this.contains(box.high) || 
+     box.contains(this.low) || box.contains(this.high)){
       return true;
   }
   return false;
 };
 
-//this still needs to be generalized so not just utilizing division
+//return array of children
 Box.prototype.split = function(){
   var result = [];
   result.push(new Box(this.low, new Point((this.low.x+this.high.x)/2, (this.low.y+this.high.y)/2)));
@@ -56,12 +35,3 @@ Box.prototype.split = function(){
               new Point((this.low.x+this.high.x)/2, this.high.y)));
   return result;
 };
-
-
-
-
-
-
-
-
-
