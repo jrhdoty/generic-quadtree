@@ -27,14 +27,14 @@ describe('Box', function () {
 
   });
 
-  it('has functions containsPoint and overlaps', function () {
-    expect(box.containsPoint).to.be.a('function');
+  it('has functions contains and overlaps', function () {
+    expect(box.contains).to.be.a('function');
     expect(box.overlaps).to.be.a('function');
   });
 
   it('detects that a point is contained correctly', function(){
-    expect(box.containsPoint(point1)).to.equal(true);
-    expect(box.containsPoint(point5)).to.equal(false);
+    expect(box.contains(point1)).to.equal(true);
+    expect(box.contains(point5)).to.equal(false);
   });
 
   it('detects an overlap correctly', function(){

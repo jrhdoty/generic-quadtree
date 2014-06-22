@@ -18,22 +18,22 @@ describe('Point', function () {
 
   });
 
-  it('has functions lt and gt', function () {
-    expect(point1.lt).to.be.a('function');
-    expect(point1.gt).to.be.a('function');
+  it('has functions lte and gte', function () {
+    expect(point1.lte).to.be.a('function');
+    expect(point1.gte).to.be.a('function');
   });
 
   it('should have correctly functioning ls function', function(){
-    expect(point1.lt(point2)).to.equal(true);
-    expect(point1.lt(point5)).to.equal(false);
-    expect(point1.lt(point4)).to.equal(false);
-    expect(point1.lt(point6)).to.equal(false);
+    expect(point1.lte(point2)).to.equal(true);
+    expect(point1.lte(point5)).to.equal(false);
+    expect(point1.lte(point4)).to.equal(false);
+    expect(point1.lte(point6)).to.equal(false);
   });
 
   it('should have correctly functioning ls function', function(){
-    expect(point2.gt(point1)).to.equal(true);
-    expect(point5.gt(point1)).to.equal(false);
-    expect(point5.gt(point1)).to.equal(false);
-    expect(point6.gt(point1)).to.equal(false);
+    expect(point2.gte(point1)).to.equal(true);
+    expect(point5.gte(point1)).to.equal(false);
+    expect(point5.gte(point1)).to.equal(false);
+    expect(point6.gte(point1)).to.equal(false);
   });
 });
