@@ -4,12 +4,12 @@ var Quadtree = function(box, max){
   this.box = box;
   this.children = null;
   this.value = [];
-  this.max = max || 10;
+  this.max = max || 10; //max children
 };
 
 Quadtree.prototype.insert = function(point, object){
-  //check if should contain x, y
-  if (!this.box.containsPoint(point)){
+  //check if should contain point
+  if (!this.box.contains(point)){
     return this;
   }
 
@@ -17,11 +17,11 @@ Quadtree.prototype.insert = function(point, object){
   //need to check if it already exists though
   if (this.children === null && this.value.length < this.max){
     for(var i = 0; i < this.value.length; i++){
-      if(this.value[i].point.x === point.x && this.value[i].point.y === point.y){
+      if(this.value[i].point.equals(point)){
         this.value[i].value = object;
         return;
       }
-    } 
+    }
     this.value.push({point: point, value:object});
     return this;
   }
@@ -35,7 +35,6 @@ Quadtree.prototype.insert = function(point, object){
   for(var i = 0; i < this.children.length; i++){
     this.children[i].insert(point, object);
   }
-
   this.value = [];
   return this;
 };
@@ -65,7 +64,7 @@ Quadtree.prototype.queryRange = function(box){
   var intersection = [];
   if(this.value.length > 0){
     for(var i = 0; i < this.value.length; i++){
-      if(box.containsPoint(this.value[i].point)){
+      if(box.contains(this.value[i].point)){
         intersection.push(this.value[i]);
       }
     }
@@ -83,13 +82,13 @@ Quadtree.prototype.queryRange = function(box){
 
 Quadtree.prototype.queryPoint = function(point){
   //return value if tree contains point
-  if(!this.box.containsPoint(point)){
+  if(!this.box.contains(point)){
     return null;
   }
 
   if (this.value.length > 0){
     for (var i = 0; i < this.value.length; i++){
-      if (this.value[i].point.x === point.x && this.value[i].point.y === point.y){
+      if (this.value[i].point.equals(point)){
        return this.value[0].value;
       }
     }
@@ -110,10 +109,3 @@ Quadtree.prototype.clear = function(){
   this.children = null;
   this.value = [];
 };
-
-
-
-
-
-
-
