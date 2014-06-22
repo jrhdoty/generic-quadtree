@@ -36,4 +36,8 @@ describe('Point', function () {
     expect(point5.gte(point1)).to.equal(false);
     expect(point6.gte(point1)).to.equal(false);
   });
+
+  it('should have correctly functioning equals function', function(){
+    expect(point1.equals(new Point(10, 10))).to.equal(true);
+  });
 });
