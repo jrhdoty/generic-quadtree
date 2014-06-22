@@ -195,3 +195,10 @@ Point.prototype.gte = function(point){
 Point.prototype.equals = function(point){
   return (this.x === point.x  && this.y === point.y);
 };
+
+//make compatible with use in browser
+if (typeof module !== 'undefined') {
+  module.exports.Quadtree = Quadtree;
+  module.exports.Box = Box;
+  module.exports.Point = Point;
+}
