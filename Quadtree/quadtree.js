@@ -4,7 +4,7 @@ var Quadtree = function(box, max){
   this.box = box;
   this.children = null;
   this.value = [];
-  this.max = max || 10; //max children
+  this.max = max || 10; //max points per node
 };
 
 Quadtree.prototype.insert = function(point, object){
@@ -89,7 +89,7 @@ Quadtree.prototype.queryPoint = function(point){
   if (this.value.length > 0){
     for (var i = 0; i < this.value.length; i++){
       if (this.value[i].point.equals(point)){
-       return this.value[0].value;
+       return this.value[i].value;
       }
     }
   }
@@ -101,8 +101,33 @@ Quadtree.prototype.queryPoint = function(point){
     }
     return val;
   }
-
   return null;
+};
+
+Quadtree.prototype.removePoint = function(point){
+  //return if tree doesn't contain point
+  if(!this.box.contains(point)){
+    return;
+  }
+
+  var i;
+  if (this.value.length > 0){
+    for ( i = 0; i < this.value.length; i++ ){
+      if (this.value[i].point.equals(point)){
+        this.value.splice(i,1);
+        return;
+      }
+    }
+    return; // didn't contain point and is leaf node
+  }
+
+  if (this.children !== null){
+    for( i = 0; i < this.children.length; i++ ){
+      this.children[i].removePoint(point);
+    }
+  }
+
+  return;
 };
 
 Quadtree.prototype.clear = function(){

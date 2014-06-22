@@ -50,6 +50,20 @@ describe('Quadtree', function () {
     expect(contains).to.equal(true);
   });
 
+  it('queryPoint should return value if tree contains point', function(){
+    var point = new Point(10, 25);
+    quad.insert(point, 'value');
+    expect(quad.queryPoint(point)).to.equal('value');
+  });
+
+  it('removePoint should remove point if tree contains point', function(){
+    var point = new Point(10, 25);
+    quad.insert(point, 'value');
+    expect(quad.queryPoint(point)).to.equal('value');
+    quad.removePoint(point);
+    expect(quad.queryPoint(point)).to.equal(null);
+  });
+
   it('subdivide should correctly generate four child nodes', function(){
     var point = new Point(10, 15);
     quad.insert(point);
