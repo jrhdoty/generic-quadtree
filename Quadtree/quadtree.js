@@ -59,7 +59,6 @@ Quadtree.prototype.queryRange = function(box){
   if ((this.children === null && this.value.length === 0) || !this.box.overlaps(box)){
     return [];
   }
-
   //if root node with contained value(s), then check against contained objects
   var intersection = [];
   if(this.value.length > 0){
@@ -70,7 +69,6 @@ Quadtree.prototype.queryRange = function(box){
     }
     return intersection;
   }
-
   //if has children, then make recursive call on children 
   if(this.children !== null){
     for(var i = 0; i < this.children.length; i++){
@@ -126,11 +124,74 @@ Quadtree.prototype.removePoint = function(point){
       this.children[i].removePoint(point);
     }
   }
-
   return;
 };
 
 Quadtree.prototype.clear = function(){
   this.children = null;
   this.value = [];
+};
+
+
+//generalized box class, defined by two points with lessThan (lte) and greaterThan (gte) functions
+var Box = function(least, greatest){
+  this.low = least;
+  this.high = greatest;
+};
+
+//return true if box contains point
+Box.prototype.contains = function(point){
+  if(this.low.lte(point) && this.high.gte(point)){
+    return true;
+  }
+  return false;
+};
+
+//return true if overlap of boxes
+Box.prototype.overlaps = function(box){
+  //if this contains either point of box, then there is an overlap
+  if(this.contains(box.low) || this.contains(box.high) || 
+     box.contains(this.low) || box.contains(this.high)){
+      return true;
+  }
+  return false;
+};
+
+//return array of children
+Box.prototype.split = function(){
+  var result = [];
+  result.push(new Box(this.low, new Point((this.low.x+this.high.x)/2, (this.low.y+this.high.y)/2)));
+  result.push(new Box(new Point((this.low.x+this.high.x)/2, this.low.y), 
+              new Point(this.high.x, (this.low.y+this.high.y)/2)));
+  result.push(new Box(new Point((this.low.x+this.high.x)/2, (this.low.y+this.high.y)/2), this.high));
+  result.push(new Box(new Point(this.low.x, (this.low.y+this.high.y)/2), 
+              new Point((this.low.x+this.high.x)/2, this.high.y)));
+  return result;
+};
+
+//two dimensional point
+var Point = function(x, y){
+  this.x = x;
+  this.y = y;
+};
+
+//less than or equal to in both dimensions
+Point.prototype.lte = function(point){
+  if(this.x <= point.x && this.y <= point.y){
+    return true;
+  }
+  return false;
+};
+
+//greater than or equal to in both dimensions
+Point.prototype.gte = function(point){
+  if (this.x >= point.x && this.y >= point.y){
+    return true;
+  }
+  return false;
+};
+
+//return true if points are equal in both dimensions
+Point.prototype.equals = function(point){
+  return (this.x === point.x  && this.y === point.y);
 };
