@@ -1,0 +1,5 @@
+#untracked files
+.DS_Store
+planning
+bower_components/
+node_modules/
