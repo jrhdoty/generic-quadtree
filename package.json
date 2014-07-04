@@ -6,6 +6,11 @@
   "main": "./Quadtree/quadtree.js",
   "dependencies": {}, 
   "license": "MIT",
+  "keywords": [
+    "quadtree",
+    "collision detection",
+    "space partitioning"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/jrhdoty/generic-quadtree.git"

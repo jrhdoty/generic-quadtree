@@ -9,6 +9,8 @@ It is optimized for performing lookup of values in a specified range.
 
 The module comes with implementations of a Point and a Box objects but will work with any objects that implement the methods on their prototypes.
 
+For use in the browser or with node.
+
 ## Installation
 
 ``` bash
