@@ -55,27 +55,34 @@ Quadtree.prototype.subdivide = function(){
 };
 
 Quadtree.prototype.queryRange = function(box){
+  var result = [];
+  this._queryRangeRec(box, result);
+  return result;
+};
+
+Quadtree.prototype._queryRangeRec = function(box, result){
   //return all point/value pairs contained in range
   //if query area doesn't overlap this box, return
   if ((this.children === null && this.value.length === 0) || !this.box.overlaps(box)){
-    return [];
+    return;
   }
   //if root node with contained value(s), then check against contained objects
   var intersection = [];
+  var i;
   if(this.value.length > 0){
-    for(var i = 0; i < this.value.length; i++){
+    for( i = 0; i < this.value.length; i++ ){
       if(box.contains(this.value[i].point)){
-        intersection.push(this.value[i]);
+        result.push(this.value[i]);
       }
     }
-    return intersection;
+    return;
   }
   //if has children, then make recursive call on children 
   if(this.children !== null){
-    for(var i = 0; i < this.children.length; i++){
-      intersection = intersection.concat(this.children[i].queryRange(box));
+    for( i = 0; i < this.children.length; i++ ){
+      this.children[i]._queryRangeRec(box, result);
     }
-    return intersection;
+    return;
   }
 };
 
