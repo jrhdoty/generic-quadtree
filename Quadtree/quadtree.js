@@ -55,19 +55,18 @@ Quadtree.prototype.subdivide = function(){
 };
 
 Quadtree.prototype.queryRange = function(box){
+  //return all point/value pairs contained in range
   var result = [];
   this._queryRangeRec(box, result);
   return result;
 };
 
 Quadtree.prototype._queryRangeRec = function(box, result){
-  //return all point/value pairs contained in range
-  //if query area doesn't overlap this box, return
-  if ((this.children === null && this.value.length === 0) || !this.box.overlaps(box)){
+  //if query area doesn't overlap this box then return
+  if (!this.box.overlaps(box)){
     return;
   }
-  //if root node with contained value(s), then check against contained objects
-  var intersection = [];
+  //if leaf node with contained value(s), then check against contained objects
   var i;
   if(this.value.length > 0){
     for( i = 0; i < this.value.length; i++ ){
