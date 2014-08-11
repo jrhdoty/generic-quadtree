@@ -4,7 +4,10 @@
   "author": "John Doty <jrhdoty@gmail.com>",
   "version": "0.3.0",
   "main": "./Quadtree/quadtree.js",
-  "dependencies": {}, 
+  "dependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.21.4"
+  },
   "license": "MIT",
   "keywords": [
     "quadtree",
