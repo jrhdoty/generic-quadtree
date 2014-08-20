@@ -4,6 +4,9 @@
   "author": "John Doty <jrhdoty@gmail.com>",
   "version": "1.0.0",
   "main": "./Quadtree/quadtree.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": {
     "chai": "^1.9.1",
     "mocha": "^1.21.4"
