@@ -1,7 +1,7 @@
 var Quadtree = require('../Quadtree/quadtree.js');
 var Point = Quadtree.Point;
 var Box = Quadtree.Box;
-var expect = require('Chai').expect;
+var expect = require('chai').expect;
 
 describe('Point', function () {
   'use strict';
