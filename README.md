@@ -23,7 +23,7 @@ npm install generic-quadtree
 //create bounding area of quadtree
 var min = new Point(0,0);
 var max = new Point(100, 100);
-var totalArea = new Box(point1, point2);
+var totalArea = new Box(min, max);
 
 //instantiate new quadtree
 var tree = new Quadtree(totalArea);
