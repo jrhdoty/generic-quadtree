@@ -118,6 +118,4 @@ describe('Quadtree', function () {
     result = quad.queryRange(box);
     expect(result.length).to.equal(4);    
   });
-
-  // Add more assertions here
 });
