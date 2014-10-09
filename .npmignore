@@ -1,0 +1,7 @@
+node_modules
+PerformanceTests
+test
+.gitignore
+.travis.yml
+.performanceTests.html
+.planning

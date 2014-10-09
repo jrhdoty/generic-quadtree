@@ -1,4 +1,4 @@
-var Quadtree = require('../Quadtree/quadtree.js');
+var Quadtree = require('../quadtree.js');
 var Point = Quadtree.Point;
 var Box = Quadtree.Box;
 var expect = require('chai').expect;

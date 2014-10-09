@@ -1,6 +1,6 @@
 'use strict';
-
 var Quadtree = function(box, max){
+
   this.box = box;
   this.children = null;
   this.value = [];
