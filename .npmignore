@@ -3,5 +3,5 @@ PerformanceTests
 test
 .gitignore
 .travis.yml
-.performanceTests.html
-.planning
+performanceTests.html
+planning
