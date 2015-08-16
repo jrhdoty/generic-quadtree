@@ -165,9 +165,9 @@ Box.prototype.overlaps = function(box){
 };
 
 // return true if the box contains the box provided as argument.
-Box.prototype.contains(box) {
+Box.prototype.containsBox = function(box){
   return this.contains(box.low) && this.contains(box.high);
-}
+};
 
 //return array of children
 Box.prototype.split = function(){
