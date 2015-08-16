@@ -156,13 +156,18 @@ Box.prototype.contains = function(point){
 
 //return true if overlap of boxes
 Box.prototype.overlaps = function(box){
-  //if this contains either point of box, then there is an overlap
-  if(this.contains(box.low) || this.contains(box.high) || 
-     box.contains(this.low) || box.contains(this.high)){
-      return true;
-  }
-  return false;
+  if (this.high.x < box.low.x) return false; // a is left of b
+  if (this.low.x > box.high.x) return false; // a is right of b
+  if (this.high.y < box.low.y) return false; // a is above b
+  if (this.low.y > box.high.y) return false; // a is below b
+
+  return true;
 };
+
+// return true if the box contains the box provided as argument.
+Box.prototype.contains(box) {
+  return this.contains(box.low) && this.contains(box.high);
+}
 
 //return array of children
 Box.prototype.split = function(){
