@@ -18,7 +18,6 @@ describe('Box', function () {
     point6 = new Point(21, 21);
     point7 = new Point(30, 30);
 
-
     box  = new Box(point, point2);
     box2 = new Box(point1, point3);
     box3 = new Box(point6, point7);
@@ -51,6 +50,12 @@ describe('Box', function () {
     var b = new Box(new Point(50, 0), new Point(100, 50));
     var b1 = new Box(new Point(0, 0), new Point(100, 100));
     expect(b.overlaps(b1)).to.equal(true);
+  });
+
+  it('detects a plus shaped box overlap correctly', function(){
+    var boxA = new Box(new Point(1, 2), new Point(4, 3));
+    var boxB = new Box(new Point(2, 1), new Point(3, 4));
+    expect(boxA.overlaps(boxB)).to.equal(true);
   });
 
   it('returns correct quadrants when split', function(){
